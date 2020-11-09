@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { NavLink, useHistory } from "react-router-dom";
 import { UserData, useUser } from "./../Login/UserData";
 
 function Header({ logoLink }) {
+  console.log(UserData)
   const [userInfo, SetUserInfo] = useUser();
-  function handleChange(params) {}
+  function handleChange(params) {
+    console.log(params)
+  }
 
   const [name, setName] = React.useState(userInfo);
-  const history = useHistory();
+   const history = useHistory();
+   console.log(history, name);
 
   React.useEffect(() => {
     setName(userInfo);

@@ -77,7 +77,7 @@ const Modal = ({ showModal, setShowModal, handleSubmit, insert }) => {
                         name:FormData.Name,
                         description:FormData.Description,
                         genre: FormData.Genre,
-                        ticket_price: FormData.TicketPrice,
+                        ticket_price: parseInt(FormData.TicketPrice),
                         country: FormData.Country,
                         image_link: FormData.ImageUrl,
                       }),

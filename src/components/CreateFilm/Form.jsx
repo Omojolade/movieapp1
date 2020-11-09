@@ -64,7 +64,7 @@ const Form = () => {
                 ticket_price,
                 country,
                 genre,
-                image_url,
+                image_link,
               }) => (
                 <>
                   <Card
@@ -74,7 +74,7 @@ const Form = () => {
                     ticketPrice={ticket_price}
                     country={country}
                     genre={genre}
-                    imageUrl={image_url}
+                    imageUrl={image_link}
                   />
                 </>
               ),

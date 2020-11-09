@@ -139,7 +139,6 @@ export const CardContainer = styled.div`
   box-shadow: 7px 10px 15px rgba(0, 0, 0, 0.56);
   color: #fff;
   margin: 10px;
-
   .pix-box {
     width: 250px;
     height: 350px;

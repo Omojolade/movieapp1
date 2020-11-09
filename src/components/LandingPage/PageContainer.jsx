@@ -69,7 +69,7 @@ function Display({ name, description, id, ticket, image, ticket_id }) {
         </div>
       </Link>
       <div className="title-txt">
-        <p>Rating: {description}</p>
+        <p>Description: {description}</p>
       </div>
       <div className="title-txt">
         <p>Ticket Price: {ticket}</p>

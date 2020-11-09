@@ -12,13 +12,14 @@ export const StyleDisplay = styled.div`
         .PageContainer-item{
             width: 250px;
             /* border: 1px solid gray; */
+            align-items: center;
             border-radius: 2rem;
             text-align: center;
             background-color: #ffffff;
             color: #000;
             .pix-box {
                 margin-bottom:2rem;
-                width: 250px;
+                width: 220px;
                 height: 350px;
                 background-color: #3e3d3c;
                 overflow: hidden;

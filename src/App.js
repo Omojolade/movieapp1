@@ -6,11 +6,11 @@ import { useUser } from "./components/Login/UserData";
 
 function App() {
   const [getUser, setUser] = useUser();
-
+console.log(getUser)
   useEffect(() => {
     const { user } = JSON.parse(localStorage.getItem("userData")) || "";
     setUser(user);
-  }, []);
+  }, );
 
   return <Route />;
 }

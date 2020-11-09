@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import {
   FormNav,
@@ -14,9 +14,28 @@ const Form = () => {
   const [showModal, setShowModal] = useState(false);
   const [movieCollection, setMovieCollection] = useState([]);
   console.log("heelo", movieCollection);
+
   const openModal = () => {
     setShowModal((prev) => !prev);
   };
+
+    useEffect(async () => {
+      const url = "https://staremovieapp.herokuapp.com/apiv1/films";
+      const response = await fetch(url, {
+        method: "GET",
+        redirect: "follow",
+      });
+      let userData = await response
+        .json()
+        .then((val) => {
+          return val;
+        })
+        .then((user1) => {
+          setMovieCollection(user1);
+        });
+    }, []);
+
+
   return (
     <>
       <FormNav>
@@ -36,31 +55,31 @@ const Form = () => {
         />
         <GlobalStyle />
         <ModalWrappers>
-          <ul>
+          <div>
             {movieCollection.map(
               ({
-                Name,
-                Description,
+                name,
+                description,
                 ReleaseDate,
-                TicketPrice,
-                Country,
-                Genre,
-                ImageUrl,
+                ticket_price,
+                country,
+                genre,
+                image_url,
               }) => (
                 <>
                   <Card
-                    name={Name}
-                    description={Description}
+                    name={name}
+                    description={description}
                     releaseDate={ReleaseDate}
-                    ticketPrice={TicketPrice}
-                    country={Country}
-                    genre={Genre}
-                    imageUrl={ImageUrl}
+                    ticketPrice={ticket_price}
+                    country={country}
+                    genre={genre}
+                    imageUrl={image_url}
                   />
                 </>
               ),
             )}
-          </ul>
+          </div>
         </ModalWrappers>
       </CreateFilmContainer>
     </>

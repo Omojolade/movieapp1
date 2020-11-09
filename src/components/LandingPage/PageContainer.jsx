@@ -4,11 +4,12 @@ import Header from "./Header";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useUser } from "../Login/UserData";
-
+import {
+  StyleDisplay
+} from "./landingPage.style.js"
 const PageContainer = ({ allFilms }) => {
   const [data, setData] = useState("");
   const [ratings, setRating] = useState([]);
-
   useEffect(async () => {
     const url = "https://staremovieapp.herokuapp.com/apiv1/films";
     const response = await fetch(url, {
@@ -28,8 +29,8 @@ const PageContainer = ({ allFilms }) => {
   return (
     <>
       <Header logoLink={logo} />
-
-      <div className="main-area">
+      <StyleDisplay>
+        <div className="main-area">
         <div className="grid-wrapper">
           {data &&
             data.map((ten, i) => {
@@ -48,15 +49,15 @@ const PageContainer = ({ allFilms }) => {
             })}
         </div>
       </div>
-
+    </StyleDisplay>
+      
       <div className="footer-area"></div>
     </>
   );
 };
-
 function Display({ name, description, id, ticket, image, ticket_id }) {
   return (
-    <div className="PageContainer-item" key={id}>
+  <div className="PageContainer-item" key={id}>
       <div className="pix-box">
         <Link to={`/films/${id}`}>
           <img className="movie-poster" src={image} alt="movie poster" />
@@ -74,6 +75,7 @@ function Display({ name, description, id, ticket, image, ticket_id }) {
         <p>Ticket Price: {ticket}</p>
       </div>
     </div>
+    
   );
 }
 export default PageContainer;

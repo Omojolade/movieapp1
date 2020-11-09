@@ -32,10 +32,27 @@ const Modal = ({ showModal, setShowModal, handleSubmit, insert }) => {
     },
     [setShowModal, showModal],
   );
+
+  // function handleSubmit(){
+  //   let film = {
+  //     name: FormData.Name,
+  //     descript: FormData.Description,
+  //     ticket_price: FormData.TicketPrice,
+  //     country: FormData.Country,
+  //     image_url: FormData.ImageUrl,
+  //     genre: FormData.action
+  //   }
+  //   console.log(film);
+  // }
+
   useEffect(() => {
     document.addEventListener("keydown", keyPress);
     return () => document.removeEventListener("keydown", keyPress);
   }, [keyPress]);
+
+
+
+
   return (
     <>
       {showModal ? (
@@ -44,8 +61,31 @@ const Modal = ({ showModal, setShowModal, handleSubmit, insert }) => {
             <ModalWrapper name="login-form" onSubmit={handleSubmit}>
               <ModalContent showModal={showModal}>
                 <form
-                  onSubmit={(e) => {
+                  onSubmit={async(e) => {
                     e.preventDefault();
+                    console.log(FormData);
+
+                    const url = "https://staremovieapp.herokuapp.com/apiv1/addfilm";
+                    const response = await fetch(url, {
+                      method: "POST",
+                      headers: {
+                        "Content-Type": "application/json",
+                      },
+                      redirect: "follow",
+                
+                      body: JSON.stringify({
+                        name:FormData.Name,
+                        description:FormData.Description,
+                        genre: FormData.Genre,
+                        ticket_price: FormData.TicketPrice,
+                        country: FormData.Country,
+                        image_link: FormData.ImageUrl,
+                      }),
+                    });
+                    let data = await response.json().then((val) => {
+                      return val;
+                    });
+                    console.log(data);
                     insert((collection) => [...collection, FormData]);
                     setShowModal((prev) => !prev);
                   }}
@@ -74,17 +114,7 @@ const Modal = ({ showModal, setShowModal, handleSubmit, insert }) => {
                       className="modal-input"
                     ></textarea>
                   </div>
-                  <div className="form-group">
-                    <label htmlFor="date">Release Date: </label>
-                    <input
-                      type={"date"}
-                      id="date"
-                      name="ReleaseDate"
-                      onChange={handleOnChange}
-                      required
-                      className="modal-input"
-                    />
-                  </div>
+                 
                   <div className="form-group">
                     <label htmlFor="ticket">Ticket Price: </label>
                     <input
